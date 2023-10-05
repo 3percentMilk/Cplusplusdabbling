@@ -1,0 +1,78 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int result;
+
+//Method declaration practice
+class Test {
+    
+   public:
+    Test();
+    Test(int a, int b, int c);
+    int year1;
+    int year2;
+    int year3;
+    static int test;
+    void setTest(string n);
+    string getTest();
+    
+    private:
+        static string name;
+    
+    
+};
+
+//Method definition practice
+
+
+int Test::test = 15;
+
+Test::Test(){
+    cout << "In the constructor" << endl;
+}
+
+Test::Test(int a, int b, int c){
+    cout << "In the paramaterized constructor" << endl;
+    year1 = a;
+    year2 = b;
+    year3 = c;
+}
+
+void Test::setTest(string n){
+    cout << "Hello from setTest:" << n << endl;
+}
+
+
+int main() {
+    // Humble beginnings
+    cout << "Hello world!" << endl << endl;
+    
+   // int a;
+   // int* a_loc = &a;
+    
+    
+    //cout << "the location for int a is:" << a_loc;
+    
+    Test meeplet;
+    meeplet.setTest("bonkers");
+    cout << "The static int test is:" << meeplet.test << endl;
+    
+    Test moop(1,2,3);
+    cout << "This is moop." << endl;
+    cout << "His year1 is:" << moop.year1 << endl;
+    cout << "His year2 is:" << moop.year2 << endl;
+    cout << "His year3 is:" << moop.year3 << endl;
+    
+    int a = 10;
+    int b = 5;
+ 
+    
+    cout << "Hope this helps in the future" << endl << endl;
+    cout << "Grace and Peace" << endl;
+    cout << "Meeplet";
+    
+    
+
+    return 0;
+}
