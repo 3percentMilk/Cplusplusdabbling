@@ -6,22 +6,6 @@ int result;
 
 //Method declaration practice
 
-class Test {                            //This is an abstract test
-    
-    public:
-        Test();
-        Test(int a, int b, int c);
-        int year1;
-        int year2;
-        int year3;
-        static int test;
-        void setTest(string n);
-        string getTest();
-    
-    private:
-        static string name;
-};
-
 class Student {                         //This will be used in further examples
     
     public:
@@ -40,22 +24,6 @@ class Student {                         //This will be used in further examples
 
 //Method definition practice
 
-int Test::test = 15;
-
-Test::Test(){
-    cout << "In the constructor" << endl;
-}
-
-Test::Test(int a, int b, int c){
-    cout << "In the paramaterized constructor" << endl;
-    year1 = a;
-    year2 = b;
-    year3 = c;
-}
-
-void Test::setTest(string n){
-    cout << "Hello from setTest:" << n << endl;
-}
 
 
 //Method definition practice for Student
@@ -130,7 +98,30 @@ int main() {
     cout << "&x1 = " << &x1 << " = point = " << point << endl;
     cout << "&point = " << &point << " = point2 = " << point2 << endl;
     
-    
+    /**
+     * This next part will encompass the use of dynamically allocated memory. So far, without using the "new" keyword,
+     * the objects created on the run time environment will delete themselves the moment the method is completed. 
+     * 
+     * However, if we use the "new" key word, it will be allocated as dynamic memory. It needs to be defined to a 
+     * object pointer, which will keep the memory address. 
+     * 
+     * Once the object is finished, the  user then must use the "delete" function, as such: delete(object pointer in use). 
+     * delete() takes in a pointer, not an object
+     * 
+     * **Another note, when using methods from the pointer variable, use "->" instead of "."
+     * 
+     **/
+     
+     Student* dynamic = new Student("Victor", 30);
+     
+     cout << "A new student object with dynamically allocated memory has been created. Let's test it's properties!" << endl;
+     cout << "The name of the student is: " << dynamic->getName() << endl;
+     cout << "The age of the student is: " << dynamic->getAge() << endl;
+     cout << "Don't forget to use the pointer->method instead of object.method" << endl;
+     
+     // always delete the dynamic memory to prevent memory leaks
+    delete(dynamic);
+     
     
  
     
