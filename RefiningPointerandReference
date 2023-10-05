@@ -1,0 +1,144 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int result;
+
+//Method declaration practice
+
+class Test {                            //This is an abstract test
+    
+    public:
+        Test();
+        Test(int a, int b, int c);
+        int year1;
+        int year2;
+        int year3;
+        static int test;
+        void setTest(string n);
+        string getTest();
+    
+    private:
+        static string name;
+};
+
+class Student {                         //This will be used in further examples
+    
+    public:
+        Student();
+        Student(string name);
+        Student(string name, int age);
+        void setName(string name);
+        void setAge(int age);
+        string getName();
+        int getAge();
+        string toString();
+    private:
+        static string actualName;
+        static int actualAge;
+};
+
+//Method definition practice
+
+int Test::test = 15;
+
+Test::Test(){
+    cout << "In the constructor" << endl;
+}
+
+Test::Test(int a, int b, int c){
+    cout << "In the paramaterized constructor" << endl;
+    year1 = a;
+    year2 = b;
+    year3 = c;
+}
+
+void Test::setTest(string n){
+    cout << "Hello from setTest:" << n << endl;
+}
+
+
+//Method definition practice for Student
+
+//Variable declarations default
+string Student::actualName = "";
+int Student::actualAge = 0;
+
+//constructors
+Student::Student(){
+    cout << "within the empty parameter student constructor" << endl;
+}
+
+Student::Student(string name){
+    actualName = name;
+}
+
+Student::Student(string name, int age){
+    actualName = name;
+    actualAge = age;
+}
+
+//methods for getting private variables
+
+string Student::getName(){
+    return actualName;
+}
+
+int Student::getAge(){
+    return actualAge;
+}
+
+
+
+int main() {
+    // Humble beginnings
+    cout << "Hello world!" << endl << endl;
+    
+    //Let's make some student objects to learn pointers and references
+    
+    //s1 is a reference to an object student. It is carrying a student value .
+    Student s1 = Student("Victor");
+    cout << "This is testing Student class constructor2:" << s1.getName() << endl;
+    
+    //Lets dabble with ampersand and asterisk
+    
+    //Let's define a new reference to be equivalent to the object s1
+    /**
+     * Author note here that in the lecture it is not verbally clear what each element means in the line " & s2". However after rewatching the video several times I realized I was at fault. The teacher speaks that & is a reference and s1 is an object. s1 is an entity, not a reference to an entity, (prior confusion with java at the beginning of the video). Hopefully this blurb helps.
+     * 
+     **/ 
+    Student & s2 = s1;
+    cout << "using & will literally reference the exact same variable, rather than creating a new one" << endl;
+    cout << "This is testing the addresses of s1 and s2:" << endl; 
+    cout << &s2 << " == " << &s1 << endl << endl;
+    
+    //Let's then set a new Student s3 to be equal to s1 to see if a new object is made in address s3
+    
+    Student s3 = s1;
+    cout << "Using only a reference to an object, s3 should have a totally different address" << endl;
+    cout << "s3 address:" << &s3 << endl;
+    
+    //Let's now move on to pointers with a similar premise
+    
+    Student x1 = Student("Victor");
+    //The student pointer will now be pointing to the address of s1. 
+    Student* point = &x1; 
+    Student** point2 = &point;
+    
+    cout << "Let's check the pointer pathway to confirm understanding" << endl;
+    cout << "All of the following should be equivalent." << endl; 
+    cout << "&x1 = " << &x1 << " = point = " << point << endl;
+    cout << "&point = " << &point << " = point2 = " << point2 << endl;
+    
+    
+    
+ 
+    
+    cout << "Hope this helps in the future" << endl << endl;
+    cout << "Grace and Peace" << endl;
+    cout << "Meeplet";
+    
+    
+
+    return 0;
+}
