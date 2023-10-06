@@ -1,0 +1,145 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int result;
+
+//Method declaration practice
+
+class Student {                         //This will be used in further examples
+    
+    public:
+        Student();
+        Student(string name);
+        Student(string name, int age);
+        void setName(string name);      //FUNCTION CONST
+        void setAge(int age);
+        string getName() const;
+        int getAge();
+        string toString();
+    private:
+        static string actualName;
+        static int actualAge;
+};
+
+//Method definition practice for Student
+
+//Variable declarations default
+string Student::actualName = "";
+int Student::actualAge = 0;
+
+//constructors
+Student::Student(){
+    cout << "within the empty parameter student constructor" << endl;
+}
+
+Student::Student(string name){
+    actualName = name;
+}
+
+Student::Student(string name, int age){
+    actualName = name;
+    actualAge = age;
+}
+
+//methods for getting private variables
+
+string Student::getName() const{        //FUNCTION CONST
+    return actualName;
+}
+
+int Student::getAge(){
+    return actualAge;
+}
+
+
+
+int main() {
+    // Humble beginnings
+    cout << "Hello world!" << endl << endl;
+    
+    //Let's make some student objects to learn pointers and references
+    
+    //s1 is a reference to an object student. It is carrying a student value .
+    Student s1 = Student("Victor");
+    cout << "This is testing Student class constructor2:" << s1.getName() << endl;
+    
+    //Today we are going to dabble in the word const, and how it interacts with pointers and references
+    cout << "Const keyword in practice!" << endl;
+    
+    int a = 41;
+    int b = 42;
+    int c = 43;
+    
+    cout << " We have three variables that are different types that equal 42 that we will juggle with pointers and references." << endl;
+    
+    //the pattern "const type" is interchangeable. The following code chunks are equal.
+    
+    cout << "We will now try the const type pattern to see what effect it has on 1. reassigning the variable 2. modifying the variable" << endl;
+    const int* ptr1 = &a;
+    int const* ptr2 = &b;
+    
+    
+    cout << "The address of ptr1 is:" << ptr1 << endl << "The address of ptr2 is:" << ptr2 << endl;
+   
+    cout << "The variables have been reassigned. No run time error has occured." << endl;
+    
+    ptr1 = &b;
+    ptr2 = &a;
+    
+    cout << "The address of ptr1 is:" << ptr1 << endl << "The address of ptr2 is:" << ptr2 << endl;
+    cout << "const int or int const allwos us to change the address of what we are pointing at, but we cannot change the value stored" << endl;
+    cout << "Note, the pointer cannot change the type it is pointing to regardless of const." << endl << endl; 
+    
+    cout << "Now we will try moving const so that it is the pattern 'const ptr.'" << endl;
+    
+    int* const ptr3 = &c;
+    
+    cout << "Let us try changing the value at the address of ptr3:" << ptr3 << " and carries value " << *ptr3 << endl;
+    
+    *ptr3 = 15;
+    
+    cout << "The new value of ptr3 is:" << *ptr3 << endl;
+    cout << "Therefore the pattern 'const ptr' allows us to modify the value at the pointer. However, you cannot change the pointed address." << endl;
+    
+    cout << "Ergo: Combining these patterns 1. const type 2. const pointer, creates a pointer that cannot modify the value it is pointing at and cannot change what it is pointing at." << endl << endl;
+
+    //Let's learn about const key word and references
+    cout << "The following is a dive into the const key word paired with references" << endl << endl;
+    
+    cout << "The value of int a is:" << a << endl;
+    const int & ref1 = a;
+    
+    cout << "Let's imagine I entered the code below, redefining the value at addresss ref1 to a different integer." << endl;
+    cout << "The program will run into a bug because of the const key word, forbidding modification." << endl;
+    
+    //ref1 = 15;
+    
+    cout << "Now let's invert the code and try to learn what the other combination does." << endl << endl;
+    
+    int const & ref2 = a;
+    
+    cout << "The other combination also does not allow value modification throug the ref2 address." << endl << endl;
+    
+    //ref2 = 15;
+    
+    cout << "One final note on const key word. It can be used in functions as well." << endl << endl;
+    
+    cout << "For example, look above for the method using the keyword with comment indice FUNCTION CONST" << endl;
+    
+    cout << "The keyword does not allow modification of the object. It is great for the function getName(), which simply returns  the hidden name." << endl << endl;
+    
+    cout << "In conclusion, the const keyword, at a lower level, provides programming guard rails in case a line gets crossed that is not meant to be crossed." << endl;
+    cout << "At a higher level, the const keyword provides elegance and clarity to other readers, allowing them to be more in touch with the big picture architecture." << endl;
+    
+    
+
+    
+    cout << "Hope this helps in the future" << endl << endl;
+    cout << "Grace and Peace" << endl;
+    cout << "Meeplet";
+    
+    
+
+    return 0;
+}
