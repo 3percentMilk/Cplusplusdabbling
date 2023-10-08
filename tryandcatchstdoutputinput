@@ -1,0 +1,183 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int result;
+
+//Method declaration practice
+
+class Student {                         //This will be used in further examples
+    
+    public:
+        Student();
+        Student(string name);
+        Student(string name, int age);
+        Student(string const &p, string const &f, string const &l);
+        Student(string const &p, string const &f);
+        void setName(string name);      //FUNCTION CONST
+        void setAge(int age);
+        string getName() const;
+        int getAge();
+        //Problem solving
+        string PID;
+        string first_name;
+        string last_name;
+        
+        string toString();
+        void swap(int &a, int &b);
+    private:
+        static string actualName;
+        static int actualAge;
+};
+
+//Template practice
+
+template <typename Data>
+class Node{
+    public:
+        Data const data;
+        Node(const Data & d): data(d) {}
+};
+
+//Method definition practice for Student
+
+//Variable declarations default
+string Student::actualName = "";
+int Student::actualAge = 0;
+
+//constructors
+Student::Student(){
+    cout << "within the empty parameter student constructor" << endl;
+}
+
+Student::Student(string name){
+    actualName = name;
+}
+
+Student::Student(string name, int age){
+    actualName = name;
+    actualAge = age;
+}
+
+
+//Constructor from problem solving 10/6/23
+
+//recall that int & x = y; this is a referene to variable y, or the same address at variable your your your
+
+//if it is &p, or the ampersand is before the variable, it is a memory address of that variable
+//when used in defining a constructor, it is a reference to that variable . Two different ampersand meanings
+
+Student::Student(const string &p, const string &f, const string &l ){
+    
+    //remember to use "this->" isntead of "this." because this is a pointer to type student"
+    this->PID = p;
+    this->first_name = f;
+    this->last_name = l;
+}
+
+//lets practice initializing with a member initialization list
+//Semicolons are not needed!
+
+Student::Student(const string &p, const string &f): PID(p), first_name(f){}
+
+//methods for getting private variables
+
+string Student::getName() const{        //FUNCTION CONST
+    return actualName;
+}
+
+int Student::getAge(){
+    return actualAge;
+}
+
+//Method for swapping 2 integer values using pass by reference
+
+void Student::swap(int &a, int &b){
+    
+    cout << "The value of a is:" << a << endl;
+    cout << "The value of b is:" << b << endl;
+    cout << "Performing swap" << endl;
+    
+    int temp = a;
+    a = b;
+    b = temp;
+    cout << "The value of a is:" << a << endl;
+    cout << "The value of b is:" << b << endl;
+    
+    
+}
+
+
+
+int main() {
+    // Humble beginnings
+    cout << "Hello world!" << endl << endl;
+    
+    //Let's make some student objects to learn pointers and references
+    
+    //s1 is a reference to an object student. It is carrying a student value .
+    Student s1 = Student("Victor");
+    cout << "This is testing Student class constructor2:" << s1.getName() << endl;
+    
+    
+    //This is going to a be a very quick dabble in pass by reference application
+    cout << "Let's use the pass by reference technique to swap two integer values with each other." << endl;
+    
+    int a = 20;
+    int b = 21;
+    
+    s1.swap(a, b);
+    
+    //Great note from instructor
+    
+    cout << "In pass by value, we create copies of the value, while pass by reference, we create references to the actual variables" << endl << endl;
+    
+    //This is code from problem solving session 10/6/23
+    
+    //This is a dabble in cin and cout mechanics
+    
+    cout << "We have used cout and cin in the learning of new concepts. This is because it allows us to communicate with the world" << endl;
+    cout << "We have a fairly good grasp on those functions, so let's learn a few more, and practice looking through a resource for more methods" << endl;
+    
+    string garbage;
+    cout << "Type a string with anything in it:";
+    getline(cin, garbage);
+    cout << "The typed line is:" << garbage << endl;
+    
+    cout << "That is pretty cool, but what if the thing I enter does not match the type constraint I define it to?" << endl;
+    cout << "Note to self, using std namespace allows us to remove the 'std::endl' so it is just endl." << endl;
+    
+    string input;
+    cout << "Type a string, and see if the error is caught:";
+    getline(cin, input);
+    
+    try {
+        int check = stoi(input);
+        cout << "In the try case" << endl;
+        {
+            throw 404;
+  }
+}
+    catch (int myNum) {
+        cout << "Bad input, not an integer.\n";
+        cout << "Error number: " << myNum;
+}
+    
+    //if(cin.fail()){
+        
+    //    cerr << "Bad input, not an integer!" << endl;
+    //}
+    
+    
+    
+    
+    
+    
+    cout << "Hope this helps in the future" << endl << endl;
+    cout << "Grace and Peace" << endl;
+    cout << "Meeplet";
+    
+    
+
+    return 0;
+}
